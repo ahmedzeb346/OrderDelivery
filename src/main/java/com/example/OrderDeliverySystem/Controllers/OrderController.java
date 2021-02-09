@@ -1,22 +1,19 @@
 package com.example.OrderDeliverySystem.Controllers;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.OrderDeliverySystem.Modal.Order;
 import com.example.OrderDeliverySystem.Repository.OrderRepository;
 import com.example.OrderDeliverySystem.exception.ResourceNotFoundException;
-
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
- 
+import io.swagger.annotations.ApiOperation; 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -55,7 +52,8 @@ public class OrderController {
 }
 
  @ApiOperation(value = "update an order")
- @RequestMapping(value = "/updateOrder{Id}", method = RequestMethod.PUT)  
+ @PutMapping("/updateOrder/{id}")
+//@RequestMapping(value = "/updateOrder{Id}", method = RequestMethod.PUT)  
  public Order UpdateOrder(@PathVariable(value ="id") long OrderId, Order order) {
 	  Order orderData =  this._orderRepository.findById(OrderId)
 				.orElseThrow(() -> new ResourceNotFoundException("Order not found with id :" + OrderId));

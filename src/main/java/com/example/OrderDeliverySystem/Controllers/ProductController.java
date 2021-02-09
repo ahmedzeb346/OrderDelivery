@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,8 @@ public Product CreateProduct(@RequestBody Product product) {
 }
 
 @ApiOperation(value = "update an product")
-@RequestMapping(value = "/updateCustomer{Id}", method = RequestMethod.PUT)  
+@PutMapping("/updateProduct/{id}")
+//@RequestMapping(value = "updateProduct/{Id}", method = RequestMethod.PUT)  
 public Product UpdateProduct(@PathVariable(value ="id") long ProductId, Product product) {
 	Product productData =  this._productRepository.findById(ProductId)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found with id :" + ProductId));
